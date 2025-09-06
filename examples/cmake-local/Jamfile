@@ -1,0 +1,7 @@
+#Simple PID example with a simulated process
+
+exe VeryCoolExampleProject : main.cpp ;
+
+install convenient-copy
+  : VeryCoolExampleProject
+  : <location>. ;

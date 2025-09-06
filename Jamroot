@@ -1,0 +1,33 @@
+import os ;
+import testing ; # for unit tests
+import path ; # for getting a better glob
+
+path-constant TOP : . ;
+
+constant VERSION : [ SHELL "printf `cd $(TOP); git describe 2> /dev/null` || printf v1.0.0 " ] ;
+
+project /perturb
+    : requirements
+        <define>PERTURB_VERSION=\\\"$(VERSION)\\\"
+        <cxxflags>-std=c++20
+    : usage-requirements
+        <define>PERTURB_VERSION=\\\"$(VERSION)\\\"
+        <cxxflags>-std=c++20
+    ;
+
+alias headers : : :
+    : <include>.
+    ;
+
+lib perturb
+    : # sources and required components
+      [ glob src/*.cpp ]
+    : # build requirements
+      <link>static
+      <include>./include
+    : # default build
+    : # usage requirements
+      <include>./include
+    ;
+
+#build-project examples ;

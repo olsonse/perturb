@@ -1,0 +1,7 @@
+path-constant EXAMPLES_TOP : . ;
+
+use-project /perturb : ../ ;
+
+project /perturb/examples : requirements <library>/perturb//perturb ;
+
+build-project cmake-local ;
